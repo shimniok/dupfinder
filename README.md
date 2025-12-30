@@ -1,6 +1,6 @@
 # Duplicate File Finder
 
-A command-line tool to find duplicate files in a directory using MD5 checksums.
+A command-line tool to find duplicate files in a directory using MD5 checksums. Developed with assistance from Warp (see *AI* below).
 
 ## Features
 
@@ -86,10 +86,10 @@ python dupfinder.py ~/Photos --show-dirs
 ## Output
 
 The tool displays:
-- Groups of duplicate files with the same MD5 checksum
+- Groups of duplicate files with the same MD5 checksum by file or directory
 - File size for each duplicate group
 - Wasted storage space per group
-- Total summary of duplicate files and wasted space
+- Total summary of duplicate files and wasted space 
 
 Example output:
 ```
@@ -122,6 +122,7 @@ Summary:
 2. **Hash**: Calculates MD5 checksums for each file using efficient chunked reading
 3. **Compare**: Groups files with identical checksums
 4. **Report**: Displays duplicate file groups with size and location information
+5. **Directories**: optionally displays duplicate files by containing directory and shows directories containing duplicates
 
 ## Performance
 
@@ -134,6 +135,10 @@ Summary:
 - Uses MD5 checksums, which while fast, are not cryptographically secure. For this use case (finding duplicate files), MD5 is sufficient.
 - Does not handle symlinks specially - they are treated as regular files
 - Requires read permissions for all files in the scanned directory
+
+## AI 
+
+Yeah, I know, AI.  But no, this isn't "vibe coded".  I actually know how to code in Python. I reviewed the code and will make manual tweaks as needed.
 
 ## License
 

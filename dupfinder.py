@@ -100,8 +100,8 @@ def print_directory_summary(duplicates: Dict[str, List[Path]], show_size: bool =
         print("No duplicate files found.")
         return
     
-    # Build a map of directories to their duplicate file info
-    dir_duplicates: Dict[Path, Dict[str, int]] = defaultdict(lambda: {'count': 0, 'waste': 0})
+    # Build a map of directories to their duplicate file info and related directories
+    dir_duplicates: Dict[Path, Dict] = defaultdict(lambda: {'count': 0, 'waste': 0, 'related_dirs': set()})
     
     for md5_sum, files in duplicates.items():
         # Get unique directories for this duplicate set
@@ -115,6 +115,10 @@ def print_directory_summary(duplicates: Dict[str, List[Path]], show_size: bool =
             # Waste is only for extra copies (count - 1 per set in this dir)
             if dir_files_count > 0:
                 dir_duplicates[directory]['waste'] += file_size * dir_files_count
+            
+            # Track which other directories have duplicates of files in this directory
+            other_dirs = dirs - {directory}
+            dir_duplicates[directory]['related_dirs'].update(other_dirs)
     
     # Sort directories by number of duplicate files
     sorted_dirs = sorted(dir_duplicates.items(), key=lambda x: x[1]['count'], reverse=True)
@@ -131,6 +135,13 @@ def print_directory_summary(duplicates: Dict[str, List[Path]], show_size: bool =
             print(f"  {info['count']} duplicate files, {format_size(info['waste'])} total")
         else:
             print(f"  {info['count']} duplicate files")
+        
+        # Show related directories where duplicates are found
+        if info['related_dirs']:
+            related = sorted(info['related_dirs'])
+            print(f"  Duplicates also in:")
+            for rel_dir in related:
+                print(f"    - {rel_dir}")
     
     print("\n" + "=" * 80)
     print(f"Summary:")

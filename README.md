@@ -138,7 +138,7 @@ Summary:
 
 ## AI 
 
-Yeah, I know, AI.  But no, this isn't "vibe coded".  I actually know how to code in Python. I reviewed the code and will make manual tweaks as needed.
+Yeah, I used AI. But I actually know how to code in Python so I reviewed the code and will make manual tweaks as needed.
 
 ## License
 

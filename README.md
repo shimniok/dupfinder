@@ -4,17 +4,14 @@ A command-line tool to find duplicate files in a directory using MD5 checksums. 
 
 ## Features
 
-- **Fast MD5 checksum calculation** - Efficiently processes files using chunked reading
 - **Recursive scanning** - Optionally scan subdirectories
 - **Human-readable output** - Clear display of duplicate file groups with size information
 - **Space savings calculation** - Shows how much storage is wasted by duplicates
 - **Verbose mode** - Track progress while scanning large directories
-- **Pure Python** - No external dependencies, uses only the standard library
 
 ## Requirements
 
 - Python 3.8 or higher
-- No external dependencies required
 
 ## Installation
 
@@ -118,32 +115,16 @@ Summary:
 
 ## How It Works
 
-1. **Scan**: The tool recursively scans the specified directory for all files
-2. **Hash**: Calculates MD5 checksums for each file using efficient chunked reading
-3. **Compare**: Groups files with identical checksums
-4. **Report**: Displays duplicate file groups with size and location information
-5. **Directories**: optionally displays duplicate files by containing directory and shows directories containing duplicates
-
-## Performance
-
-- Uses chunked file reading (8KB chunks) to handle large files efficiently
-- Minimal memory footprint - processes files one at a time
-- Progress tracking in verbose mode for long-running scans
+The tool recursively scans the specified directory for all files, calculates the
+MD5 checksums for each file, groups files with matching checksums, then displays
+groups of duplicate files with size and location info. Optionally, displays files by
+directory along with other directories that contain duplicates. (this part needs work)
 
 ## Limitations
 
-- Uses MD5 checksums, which while fast, are not cryptographically secure. For this use case (finding duplicate files), MD5 is sufficient.
 - Does not handle symlinks specially - they are treated as regular files
 - Requires read permissions for all files in the scanned directory
 
 ## AI 
 
 Yeah, I used AI. But I actually know how to code in Python so I reviewed the code and will make manual tweaks as needed.
-
-## License
-
-This project is provided as-is for educational and practical use.
-
-## Contributing
-
-Feel free to submit issues or pull requests to improve the tool!

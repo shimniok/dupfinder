@@ -63,6 +63,8 @@ def find_duplicates(directory: Path, recursive: bool = True, verbose: bool = Fal
     # Calculate checksums for all files
     for filepath in files:
         file_count += 1
+
+        # display progress
         if verbose and file_count % 100 == 0:
             print(f"Processed {file_count}/{total_files} files...", end='\r')
         
